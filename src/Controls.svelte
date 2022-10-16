@@ -6,6 +6,9 @@
     $tiers = $tiers;
   };
   const removeTier = () => {
+    const lastTierItem = $tiers[$tiers.length - 1];
+    $tierItems = [...$tierItems, ...lastTierItem.items];
+    lastTierItem.items = [];
     $tiers = $tiers.slice(0, -1);
   };
 </script>
