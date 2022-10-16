@@ -34,6 +34,7 @@
     class="w-40 h-full flex flex-col justify-center text-center text-black p-2"
   >
     <input
+      onClick="this.select();"
       tabindex={tier.rank}
       type="text"
       class="focus:border-b-black focus:border-b-2 text-center bg-transparent focus:outline-none font-black text-2xl"
