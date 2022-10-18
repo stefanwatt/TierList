@@ -1,16 +1,16 @@
 <script lang="ts">
   export let tier: Tier = { label: "S", rank: 1, items: [] };
+  import { flip } from "svelte/animate";
   import { colors } from "./colors";
   import type { Tier } from "./tier";
   import TierItem from "./TierItem.svelte";
   import { dndzone } from "svelte-dnd-action";
+  import { flipDurationMs } from "./lib/constants";
 
   const setBgColor = (node: HTMLElement) => {
     node.style.backgroundColor =
       "#" + colors.find((color) => color.rank === tier.rank).color;
   };
-
-  const flipDurationMs = 0;
 
   const onDrag = (e: any) => {
     try {
@@ -47,9 +47,9 @@
     on:consider={onDrag}
     on:finalize={onDrop}
   >
-    {#each tier.items as item}
-      <div class="mx-1">
-        <TierItem label={item.label} />
+    {#each tier.items as item (item.id)}
+      <div animate:flip={{ duration: flipDurationMs }} class="mx-1 h-full">
+        <TierItem {item} />
       </div>
     {/each}
   </section>

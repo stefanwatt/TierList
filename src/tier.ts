@@ -1,9 +1,15 @@
 import { writable } from "svelte/store"
 
-export interface TierItem {
+export type TextTierItem = {
   id: number
   label: string
 }
+export type ImgTierItem={
+  id: number
+  imgUrl:string
+}
+export type TierItem = TextTierItem | ImgTierItem
+
 export interface Tier {
   label: string
   rank: number
