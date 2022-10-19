@@ -5,57 +5,50 @@
   import { tierItems, tiers } from "./tier";
   import { flipDurationMs } from "./lib/constants";
   import plusThick from "./assets/plus-thick.svg";
+  import { clickOutside } from "./lib/utils";
 
   const onDrag = (e: any) => {
-    try {
-      $tierItems = e.detail.items;
-    } catch (error) {
-      console.log(error);
-    }
+    console.log(e.detail);
+    if (!e.detail.info?.id) return;
+    $tierItems = e.detail.items;
   };
 
   const onDrop = (e: any) => {
-    try {
-      $tierItems = e.detail.items;
-    } catch (error) {
-      console.log(error);
-    }
+    if (!e.detail.info?.id) return;
+    $tierItems = e.detail.items;
   };
 
   let newItemLabel = "";
 
-  const handleInput = (e) => {
-    if (e.code === "Enter" || e.code === "Tab") {
-      e.preventDefault();
-      addItem();
-    }
-  };
-
   const addTextItem = () => {
-    $tierItems = [
-      ...$tierItems,
-      {
-        id: $tierItems.length + 1,
-        label: "A",
-      },
-    ];
+    const newItem = {
+      id: $tierItems.length + 1,
+      label: "F",
+    };
+    $tierItems = [...$tierItems, newItem];
+    displayAddItemMenu = false;
   };
   const addImageItem = () => {
-    $tierItems = [
-      ...$tierItems,
-      {
-        id: $tierItems.length + 1,
-        imgUrl: "https://placeimg.com/192/192/people",
-      },
-    ];
+    const newItem = {
+      id: $tierItems.length + 1,
+      imgUrl: "https://placeimg.com/192/192/people",
+    };
+    $tierItems = [...$tierItems, newItem];
+    displayAddItemMenu = false;
   };
-  const openAddItemMenu = () => {
-    displayAddItemMenu = !displayAddItemMenu;
-  };
+
   const clearAll = () => {
     $tierItems = [];
   };
   let displayAddItemMenu = false;
+  const onClickOutside = () => {
+    console.log("clicked outside");
+    displayAddItemMenu = false;
+  };
+  const onClickAddItem = (event) => {
+    displayAddItemMenu = true;
+    event.stopPropagation();
+  };
 </script>
 
 <div class="h-full py-2 ml-2 flex flex-col justify-between">
@@ -72,13 +65,13 @@
   </div>
 
   <div
-    class="h-full w-full p-4 bg-base-100 grid-cols-3 gap-2 grid"
+    class="h-full w-full p-4 bg-base-100 grid grid-flow-dense grid-cols-3 auto-rows-min gap-2"
     use:dndzone={{ items: $tierItems, flipDurationMs, type: "tier-items" }}
     on:consider={onDrag}
     on:finalize={onDrop}
   >
     <div class="relative">
-      <button on:click={openAddItemMenu} class="max-h-16">
+      <button on:click={onClickAddItem} class="h-16">
         <svg style="width:100%;height:100%" viewBox="0 0 24 24">
           <path
             fill="currentColor"
@@ -88,7 +81,8 @@
       </button>
       {#if displayAddItemMenu}
         <ul
-          class="menu text-primary-content bg-primary w-36 rounded-box absolute"
+          use:clickOutside={onClickOutside}
+          class="menu text-primary-content bg-primary w-36 rounded-box absolute z-10 "
         >
           <li>
             <button on:click={addTextItem}>
@@ -115,8 +109,8 @@
       {/if}
     </div>
 
-    {#each [...$tierItems] as item (item.id)}
-      <div class="max-h-16" animate:flip={{ duration: flipDurationMs }}>
+    {#each $tierItems as item (item.id)}
+      <div class="h-16 w-16" animate:flip={{ duration: flipDurationMs }}>
         <TierItem {item} isDeleteable={false} />
       </div>
     {/each}
