@@ -13,8 +13,10 @@
       {#if item?.imgUrl}
         <img src={item.imgUrl} alt="foo" />
       {:else}
-        <div class="flex justify-center h-full flex-col bg-gray-200 text-black text-2xl font-bold">
-          <div class="text-center">
+        <div
+          class="flex justify-center h-full flex-col bg-gray-200 text-black text-md font-bold"
+        >
+          <div class="text-center font-mono">
             {item.label}
           </div>
         </div>
