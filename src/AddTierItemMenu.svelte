@@ -96,7 +96,7 @@
   {:else}
     <li>
       <form on:submit={submit}>
-        <div class="flex flex-col">
+        <div class="flex flex-col w-full">
           <div class="flex items-center">
             {#if chosenType === "text"}
               <input
@@ -105,7 +105,7 @@
                 required
                 placeholder="enter label"
                 maxlength="8"
-                class="input input-ghost w-full focus:bg-transparent focus:outline-none bg-transparent"
+                class="input w-full focus:bg-transparent focus:outline-none bg-transparent"
               />
             {:else}
               <input
