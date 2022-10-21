@@ -1,6 +1,8 @@
 <script lang="ts">
+  type FontSize = "2xs"|"xs"|"sm"|"md"|"lg"|"xl"|"2xl"|"3xl"
   export let item,
-    isDeleteable = false;
+    isDeleteable = false,
+  fontSize:FontSize="xs";
   import { tierItems, type TextTierItem, type ImgTierItem } from "./tier";
   const removeItem = (id: number) => {
     $tierItems = $tierItems.filter((item) => item.id !== id);
@@ -14,7 +16,7 @@
         <img src={item.imgUrl} alt="foo" />
       {:else}
         <div
-          class="flex justify-center h-full flex-col bg-gray-200 text-black text-md font-bold"
+          class="flex justify-center h-full flex-col bg-gray-200 text-black text-{fontSize} font-bold"
         >
           <div class="text-center font-mono">
             {item.label}

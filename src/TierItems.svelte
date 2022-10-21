@@ -3,9 +3,8 @@
   import { scale } from "svelte/transition";
   import { dndzone } from "svelte-dnd-action";
   import TierItem from "./TierItem.svelte";
-  import { tierItems, tiers } from "./tier";
+  import { tierItems } from "./tier";
   import { flipDurationMs } from "./lib/constants";
-  import plusThick from "./assets/plus-thick.svg";
   import { displayAddItemMenu } from "./store";
   import AddTierItemMenu from "./AddTierItemMenu.svelte";
 
@@ -20,8 +19,6 @@
     $tierItems = e.detail.items;
   };
 
-  let newItemLabel = "";
-
   const clearAll = () => {
     $tierItems = [];
   };
@@ -33,10 +30,15 @@
 </script>
 
 <div class="h-full py-2 ml-2 flex flex-col justify-between">
-  <div class="flex justify-between px-2 bg-base-100 ">
+  <div class="flex justify-between px-2 bg-base-100 relative">
     <h2 class="text-xl">Items:</h2>
+    {#if $displayAddItemMenu}
+      <div id="tierItemMenu" class="absolute z-10 top-8 left-0 w-full p-2">
+        <AddTierItemMenu />
+      </div>
+    {/if}
     <div class="flex p-1">
-      <div class="relative flex items-center">
+      <div class="flex items-center">
         <button on:click={onClickAddItem} class="h-6 w-6">
           <svg style="width:100%;height:100%" viewBox="0 0 24 24">
             <path
@@ -45,11 +47,6 @@
             />
           </svg>
         </button>
-        {#if $displayAddItemMenu}
-          <div id="tierItemMenu" class="absolute z-10 top-8">
-            <AddTierItemMenu />
-          </div>
-        {/if}
       </div>
       <span class="mx-1" />
       <button on:click={clearAll}>
