@@ -49,7 +49,7 @@
   >
     {#each tier.items as item (item.id)}
       <div animate:flip={{ duration: flipDurationMs }} class="mx-1 h-full">
-        <TierItem fontSize={"xl"} {item} />
+        <TierItem fontSize={"xl"} {item} {tier} />
       </div>
     {/each}
   </section>

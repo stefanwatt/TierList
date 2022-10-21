@@ -9,7 +9,6 @@
   import AddTierItemMenu from "./AddTierItemMenu.svelte";
 
   const onDrag = (e: any) => {
-    console.log(e.detail);
     if (!e.detail.info?.id) return;
     $tierItems = e.detail.items;
   };
