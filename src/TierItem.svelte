@@ -41,7 +41,11 @@
     class=" ml-2 absolute z-10 right-1 top-1 cursor-default"
   >
     <svg
-      class="w-{removeIconSize} h-{removeIconSize} cursor-default"
+      class:w-6={!!tier}
+      class:h-6={!!tier}
+      class:w-4={!tier}
+      class:h-4={!tier}
+      class="cursor-default"
       viewBox="0 0 24 24"
     >
       <path
