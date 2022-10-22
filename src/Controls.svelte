@@ -14,6 +14,7 @@
 </script>
 
 <div class="flex justify-center">
+  
   <button
     id="minusBtn"
     on:click={removeTier}
