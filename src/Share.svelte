@@ -9,8 +9,9 @@
       `Client-ID ${import.meta.env.VITE_IMGUR_CLIENT_ID}`
     );
     const formData = new FormData();
-    formData.append("image", dataUrl);
-    formData.append("type", "base64");
+    /* formData.append("image", dataUrl); */
+    formData.append("image", "https://i.imgur.com/yQpSscy.gif");
+    formData.append("type", "url");
     formData.append("name", "tier-list.jpeg");
     formData.append("title", "Tier List");
 
