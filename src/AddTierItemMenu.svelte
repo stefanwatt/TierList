@@ -1,5 +1,6 @@
 <script lang="ts">
   import { clickOutside } from "./lib/utils";
+  import autoAnimate from "@formkit/auto-animate";
   import { scale } from "svelte/transition";
   import { tierItems } from "./tier";
   import { displayAddItemMenu } from "./store";
@@ -67,6 +68,7 @@
 </script>
 
 <ul
+  use:autoAnimate={{ duration: 200 }}
   use:clickOutside={onClickOutside}
   transition:scale={{ duration: 300, delay: 0, opacity: 0.5 }}
   class="menu text-primary-content bg-primary rounded-box"
@@ -95,8 +97,8 @@
     </li>
   {:else}
     <li>
-      <form on:submit={submit}>
-        <div class="flex flex-col w-full">
+      <form class="bg-transparent" on:submit={submit}>
+        <div use:autoAnimate={{ duration: 200 }} class="flex flex-col w-full">
           <div class="flex items-center">
             {#if chosenType === "text"}
               <input

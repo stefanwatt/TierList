@@ -1,4 +1,6 @@
 <script lang="ts">
+  import autoAnimate from "@formkit/auto-animate";
+  import { scale } from "svelte/transition";
   import Tier from "./Tier.svelte";
   import TierItems from "./TierItems.svelte";
   import { defaultTiers, tiers } from "./tier";
@@ -19,7 +21,7 @@
   <div class="content">
     <header class="flex items-center">
       <Export />
-      <span class="mx-2"></span>
+      <span class="mx-2" />
       <Share />
       <h1 class="text-6xl text-center font-bold mb-4">
         <input
@@ -33,9 +35,14 @@
     </header>
 
     <div class="flex">
-      <div id="tiers" class="w-full">
-        {#each $tiers as tier}
-          <Tier {tier} />
+      <div use:autoAnimate={{ duration: 300 }} id="tiers" class="w-full">
+        {#each $tiers as tier (tier.rank)}
+          <div
+            in:scale={{ duration: 500, delay: 0, opacity: 0.5 }}
+            class="w-full h-32 flex my-2 bg-base-100"
+          >
+            <Tier {tier} />
+          </div>
         {/each}
       </div>
       <div class="w-1/3">

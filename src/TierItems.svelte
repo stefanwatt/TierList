@@ -1,4 +1,5 @@
 <script lang="ts">
+  import autoAnimate from "@formkit/auto-animate";
   import { flip } from "svelte/animate";
   import { scale } from "svelte/transition";
   import { dndzone } from "svelte-dnd-action";
@@ -28,7 +29,9 @@
   };
 </script>
 
-<div class="h-full py-2 ml-2 flex flex-col justify-between">
+<div
+  class="h-full py-2 ml-2 flex flex-col justify-between transition-all duration-300"
+>
   <div class="flex justify-between px-2 bg-base-100 relative">
     <h2 class="text-xl">Items:</h2>
     {#if $displayAddItemMenu}

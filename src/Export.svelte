@@ -32,7 +32,10 @@
 </label>
 
 <input type="checkbox" id="exportModal" class="modal-toggle" />
-<label for="exportModal" class="modal cursor-pointer">
+<label
+  for="exportModal"
+  class="modal cursor-pointer"
+>
   <label class="modal-box relative" for="">
     <label
       for="exportModal"
