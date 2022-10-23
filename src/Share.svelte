@@ -11,6 +11,9 @@
 
     const formData = new FormData();
     formData.append("image", dataUrl);
+    formData.append("type", "base64");
+    formData.append("name", "tier-list.jpeg");
+    formData.append("title", "Tier List");
 
     const res = await fetch("https://api.imgur.com/3/image", {
       method: "POST",
