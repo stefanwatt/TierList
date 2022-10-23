@@ -35,7 +35,8 @@
       body: formData,
       redirect: "follow",
     });
-    console.log(res);
+    const { link } = await res.json();
+    window.open(link, "_blank").focus();
   };
 </script>
 
