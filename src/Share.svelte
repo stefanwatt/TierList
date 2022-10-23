@@ -16,6 +16,8 @@
   };
 
   const uploadToImgur = async () => {
+    window.open("https://google.com/", "_blank").focus();
+    return;
     const dataUrl = await toJpeg(document.getElementById("tiers"));
     const file = dataURLtoFile(dataUrl, "tier-list.jpeg");
     const myHeaders = new Headers();
@@ -35,8 +37,8 @@
       body: formData,
       redirect: "follow",
     });
-    const { link } = await res.json();
-    window.open(link, "_blank").focus();
+    const { data } = await res.json();
+    window.open(data.link, "_blank").focus();
   };
 </script>
 
