@@ -16,8 +16,6 @@
   };
 
   const uploadToImgur = async () => {
-    window.open("https://google.com/", "_blank").focus();
-    return;
     const dataUrl = await toJpeg(document.getElementById("tiers"));
     const file = dataURLtoFile(dataUrl, "tier-list.jpeg");
     const myHeaders = new Headers();
