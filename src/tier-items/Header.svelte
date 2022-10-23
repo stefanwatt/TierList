@@ -1,40 +1,20 @@
 <script lang="ts">
-  import autoAnimate from "@formkit/auto-animate";
-  import { flip } from "svelte/animate";
-  import { scale } from "svelte/transition";
-  import { dndzone } from "svelte-dnd-action";
-  import TierItem from "./TierItem.svelte";
-  import { tierItems } from "./tier";
-  import { flipDurationMs } from "./lib/constants";
-  import { displayAddItemMenu, itemTypeToggle } from "./store";
   import AddTierItemMenu from "./AddTierItemMenu.svelte";
-  import Text from "./lib/icons/Text.svelte";
-  import Image from "./lib/icons/Image.svelte";
-
-  const onDrag = (e: any) => {
-    if (!e.detail.info?.id) return;
-    $tierItems = e.detail.items;
-  };
-
-  const onDrop = (e: any) => {
-    if (!e.detail.info?.id) return;
-    $tierItems = e.detail.items;
-  };
-
-  const clearAll = () => {
-    $tierItems = [];
-  };
-
+  import Text from "../lib/icons/Text.svelte";
+  import Image from "../lib/icons/Image.svelte";
+  import { displayAddItemMenu, itemTypeToggle } from "../store";
+  import { tierItems } from "../tiers/store";
   const onClickAddItem = (event) => {
     $displayAddItemMenu = true;
     event.stopPropagation();
   };
   $: itemTypeToggleIcon = $itemTypeToggle ? Text : Image;
+  const clearAll = () => {
+    $tierItems = [];
+  };
 </script>
 
-<div
-  class="h-full py-2 ml-2 flex flex-col justify-between transition-all duration-300"
->
+<div>
   <div class="flex justify-between px-2 bg-base-100 relative">
     <h2 class="text-xl">Items:</h2>
     {#if $displayAddItemMenu}
@@ -61,6 +41,7 @@
             d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"
           />
         </svg>
+      </button>
     </div>
   </div>
 
@@ -74,22 +55,6 @@
     <span class="ml-2">
       <svelte:component this={itemTypeToggleIcon} />
     </span>
-  </div>
-  <div
-    class="h-full w-full p-4 bg-base-100 grid grid-flow-dense grid-cols-3 auto-rows-min gap-2"
-    use:dndzone={{ items: $tierItems, flipDurationMs, type: "tier-items" }}
-    on:consider={onDrag}
-    on:finalize={onDrop}
-  >
-    {#each $tierItems as item (item.id)}
-      <div
-        in:scale={{ duration: 500, delay: 0, opacity: 0.5 }}
-        class="h-16 w-16"
-        animate:flip={{ duration: flipDurationMs }}
-      >
-        <TierItem {item} isDeleteable={false} />
-      </div>
-    {/each}
   </div>
 </div>
 

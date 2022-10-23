@@ -6,7 +6,7 @@
     type ImgTierItem,
     type Tier,
     tiers,
-  } from "./tier";
+  } from "../tiers/store";
   export let item,
     fontSize: FontSize = "xs",
     tier: Tier;

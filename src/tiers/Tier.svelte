@@ -1,11 +1,11 @@
 <script lang="ts">
   export let tier: Tier = { label: "S", rank: 1, items: [] };
   import { flip } from "svelte/animate";
-  import { colors } from "./colors";
-  import type { Tier } from "./tier";
-  import TierItem from "./TierItem.svelte";
+  import { colors } from "../colors";
+  import type { Tier } from "./store";
+  import TierItem from "../tier-items/TierItem.svelte";
   import { dndzone } from "svelte-dnd-action";
-  import { flipDurationMs } from "./lib/constants";
+  import { flipDurationMs } from "../lib/constants";
 
   const setBgColor = (node: HTMLElement) => {
     node.style.backgroundColor =

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { defaultTiers, tierItems, tiers } from "./tier";
+  import { defaultTiers, tierItems, tiers } from "./tiers/store";
   const addTier = () => {
     const nextTier = defaultTiers[$tiers.length];
     $tiers.push(nextTier);

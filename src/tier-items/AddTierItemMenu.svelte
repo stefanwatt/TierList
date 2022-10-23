@@ -1,11 +1,14 @@
 <script lang="ts">
-  import { clickOutside } from "./lib/utils";
+  import { clickOutside } from "../lib/utils";
   import autoAnimate from "@formkit/auto-animate";
   import { scale } from "svelte/transition";
-  import { tierItems } from "./tier";
-  import { displayAddItemMenu } from "./store";
+  import { tierItems } from "../tiers/store";
+  import { displayAddItemMenu } from "../store";
   import { v4 as uuid } from "uuid";
   import { onMount } from "svelte";
+  import Image from "../lib/icons/Image.svelte";
+  import Text from "../lib/icons/Text.svelte";
+  import Send from "../lib/icons/Send.svelte";
 
   let newItemLabel = "";
   let newItemUrl = "";
@@ -75,23 +78,11 @@
 >
   {#if !chosenType}
     <li>
-      <button class="menuBtn" on:click={chooseTextItem}>
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-          <path
-            fill="currentColor"
-            d="M5,3C3.89,3 3,3.89 3,5V19C3,20.11 3.89,21 5,21H19C20.11,21 21,20.11 21,19V5C21,3.89 20.11,3 19,3H5M5,5H19V19H5V5M7,7V9H17V7H7M7,11V13H17V11H7M7,15V17H14V15H7Z"
-          />
-        </svg>Text</button
-      >
+      <button class="menuBtn" on:click={chooseTextItem}> <Text />Text</button>
     </li>
     <li>
       <button class="menuBtn" on:click={chooseImageItem}>
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-          <path
-            fill="currentColor"
-            d="M20,5A2,2 0 0,1 22,7V17A2,2 0 0,1 20,19H4C2.89,19 2,18.1 2,17V7C2,5.89 2.89,5 4,5H20M5,16H19L14.5,10L11,14.5L8.5,11.5L5,16Z"
-          />
-        </svg>
+        <Image />
         Image<button /></button
       >
     </li>
@@ -119,12 +110,7 @@
             {/if}
             <span class="ml-1"
               ><button type="submit">
-                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                  <path
-                    fill="currentColor"
-                    d="M2,21L23,12L2,3V10L17,12L2,14V21Z"
-                  />
-                </svg>
+                <Send />
               </button>
             </span>
           </div>
