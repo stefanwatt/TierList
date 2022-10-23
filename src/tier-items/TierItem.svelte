@@ -9,7 +9,7 @@
   } from "../tiers/store";
   export let item,
     fontSize: FontSize = "xs",
-    tier: Tier;
+    tier: Tier = null;
   const removeItem = (id: number) => {
     $tierItems = $tierItems.filter((item) => item.id !== id);
     if (!tier) return;
