@@ -18,7 +18,6 @@
   const uploadToImgur = async () => {
     const dataUrl = await toJpeg(document.getElementById("tiers"));
     const file = dataURLtoFile(dataUrl, "tier-list.jpeg");
-    return console.log(dataUrl);
     const myHeaders = new Headers();
     myHeaders.append(
       "Authorization",
