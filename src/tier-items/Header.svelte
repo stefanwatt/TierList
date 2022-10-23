@@ -8,7 +8,6 @@
     $displayAddItemMenu = true;
     event.stopPropagation();
   };
-  $: itemTypeToggleIcon = $itemTypeToggle ? Text : Image;
   const clearAll = () => {
     $tierItems = [];
   };
@@ -53,7 +52,11 @@
       bind:checked={$itemTypeToggle}
     />
     <span class="ml-2">
-      <svelte:component this={itemTypeToggleIcon} />
+      <label class="swap swap-flip">
+        <input type="checkbox" bind:checked={$itemTypeToggle}/>
+        <div class="swap-on"><Text /></div>
+        <div class="swap-off"><Image /></div>
+      </label>
     </span>
   </div>
 </div>
