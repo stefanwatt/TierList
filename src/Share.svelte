@@ -8,7 +8,6 @@
       "Authorization",
       `Client-ID ${import.meta.env.VITE_IMGUR_CLIENT_ID}`
     );
-    console.log(import.meta.env.VITE_IMGUR_CLIENT_ID)
     const formData = new FormData();
     formData.append("image", dataUrl);
     formData.append("type", "base64");
