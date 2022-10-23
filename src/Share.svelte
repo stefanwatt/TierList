@@ -1,17 +1,32 @@
 <script lang="ts">
   import { toJpeg } from "html-to-image";
 
+  const dataURLtoFile = (dataurl, filename) => {
+    var arr = dataurl.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  };
+
   const uploadToImgur = async () => {
     const dataUrl = await toJpeg(document.getElementById("tiers"));
+    const file = dataURLtoFile(dataUrl, "tier-list.jpeg");
+    return console.log(dataUrl);
     const myHeaders = new Headers();
     myHeaders.append(
       "Authorization",
       `Client-ID ${import.meta.env.VITE_IMGUR_CLIENT_ID}`
     );
     const formData = new FormData();
-    /* formData.append("image", dataUrl); */
-    formData.append("image", "https://i.imgur.com/yQpSscy.gif");
-    formData.append("type", "url");
+    formData.append("image", file);
+    formData.append("type", "file");
     formData.append("name", "tier-list.jpeg");
     formData.append("title", "Tier List");
 
