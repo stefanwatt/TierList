@@ -33,3 +33,4 @@ export const defaultTiers: Tier[] = [
 export const tiers = writable<Tier[]>(defaultTiers.slice(0, -2))
 
 export const tierItems = writable<TierItem[]>([])
+
