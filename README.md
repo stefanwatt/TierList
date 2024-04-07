@@ -1,4 +1,5 @@
 # No Nonsense Tier List Webapp
+https://tier-list.onrender.com/
 ## Built with:
 - Svelte
 - TypeScript
